@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
+  m_Name: New Material 4
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 2100000, guid: b53de73172d0c0b4a8c0ebedd6318618, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -26,5 +26,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 0.18127559, g: 0.254717, b: 0.1763795, a: 1}
+    - _Color: {r: 0.6792453, g: 0.56959206, b: 0.560057, a: 1}
   m_BuildTextureStacks: []
