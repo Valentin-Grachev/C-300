@@ -10,7 +10,7 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            _sequence.Run();
+            FindObjectOfType<HydroSequence>().Run();
         }
     }
 
