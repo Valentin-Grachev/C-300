@@ -18,15 +18,15 @@ public class HydroMove : HydroItem
         if (_rectTransform == null)
         {
             _rectTransform = GetComponent<RectTransform>();
-            _originPosition = _rectTransform.position;
+            _originPosition = _rectTransform.localPosition;
         }
 
-        _rectTransform.position = _originPosition;
+        _rectTransform.localPosition = _originPosition;
     }
 
     public override void Animate()
     {
-        _rectTransform.DOMove(_newPosition.position, moveDuration)
+        _rectTransform.DOLocalMove(_newPosition.localPosition, moveDuration)
             .SetEase(Ease.Linear)
             .onComplete += () => onAnimated?.Invoke();
 
