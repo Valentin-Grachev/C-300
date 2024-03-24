@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 
 public class HydroFill : HydroItem
 {
+    [SerializeField] private Transform _sortParent;
+
+
     private RectTransform _rectTransform;
     private float _width;
 
@@ -15,6 +16,8 @@ public class HydroFill : HydroItem
 
     public override void Initialize()
     {
+        if (_sortParent == null) Debug.LogError("Parent is null! GameObject: " + name + " " + transform.parent.name);
+        transform.SetParent(_sortParent);
         onAnimated = null;
         _rectTransform ??= GetComponent<RectTransform>();
         _width = _rectTransform.sizeDelta.x;
