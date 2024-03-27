@@ -1,31 +1,55 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class HydroMove : HydroItem
 {
-    [SerializeField] private RectTransform _moveObject;
-    [SerializeField] private RectTransform _newPosition;
+    [SerializeField] private Image _movableImage;
+    [SerializeField] private float _duration = 5f;
+    [Space(10)]
+    [SerializeField] private RectTransform _fromPosition;
+    [SerializeField] private RectTransform _toPosition;
 
-    private Vector3 _originPosition = Vector3.zero;
+    private Color _originColor;
+    private Tween _moveTween;
+    private Sequence _colorSequence;
 
-    private const float moveDuration = 1f;
+
+    private const float colorChangeDuration = 1f;
+
+
+    private void Awake()
+    {
+        _originColor = _movableImage.color;
+    }
 
 
     public override void Initialize()
     {
-        onAnimated = null;
+        _colorSequence?.Kill();
+        _moveTween?.Kill();
 
-        if (_originPosition == Vector3.zero)
-            _originPosition = _moveObject.localPosition;
-
-        _moveObject.localPosition = _originPosition;
+        _movableImage.rectTransform.localPosition = _fromPosition.localPosition;
+        _movableImage.color = _originColor;
     }
 
     public override void Animate()
     {
-        _moveObject.DOLocalMove(_newPosition.localPosition, moveDuration)
-            .SetEase(Ease.Linear)
-            .onComplete += () => onAnimated?.Invoke();
+        _moveTween = _movableImage.rectTransform.DOLocalMove
+            (_toPosition.localPosition, _duration).SetEase(Ease.Linear);
+
+        _moveTween.onComplete += () =>
+        {
+            onAnimated?.Invoke();
+            _colorSequence.Kill();
+            _movableImage.color = _originColor;
+        };
+
+
+        _colorSequence = DOTween.Sequence()
+            .Append(_movableImage.DOColor(Color.green, colorChangeDuration / 2f).SetEase(Ease.OutFlash))
+            .Append(_movableImage.DOColor(_originColor, colorChangeDuration / 2f).SetEase(Ease.OutFlash))
+            .SetLoops(-1);
 
     }
 
