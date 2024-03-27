@@ -18,9 +18,6 @@ public class HydroModelAnimation : HydroItem
     {
         ModelAnimation.onAnimationFinished -= OnAnimationFinished;
         ModelAnimation.onAnimationFinished += OnAnimationFinished;
-
-        ModelAnimation.SetTrigger(_clip.name);
-        ModelAnimation.speed = 0f;
     }
 
     private void OnAnimationFinished() => onAnimated?.Invoke();
