@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,6 +33,7 @@ public class AnimationController : MonoBehaviour
 
     public static void RunStep(int stepIndex)
     {
+        DOTween.KillAll();
         foreach (Transform child in instance._hydroSystem)
             child.gameObject.SetActive(false);
 

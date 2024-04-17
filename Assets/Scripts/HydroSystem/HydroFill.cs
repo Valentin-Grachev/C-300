@@ -25,6 +25,7 @@ public class HydroFill : HydroItem
         if (_sortParent == null) Debug.LogError("Parent is null! GameObject: " + name + " " + transform.parent.name);
         transform.SetParent(_sortParent);
         _rectTransform.sizeDelta = new Vector2(0f, _rectTransform.sizeDelta.y);
+        print(_originWidth);
     }
 
     public override void Animate()
