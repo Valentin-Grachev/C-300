@@ -25,12 +25,13 @@ public class HydroFill : HydroItem
         if (_sortParent == null) Debug.LogError("Parent is null! GameObject: " + name + " " + transform.parent.name);
         transform.SetParent(_sortParent);
         _rectTransform.sizeDelta = new Vector2(0f, _rectTransform.sizeDelta.y);
-        print(_originWidth);
     }
 
     public override void Animate()
     {
         float duration = _originWidth / speed;
+
+        if (_rectTransform == null) return;
 
         _rectTransform.DOSizeDelta(new Vector2(_originWidth, _rectTransform.sizeDelta.y), duration)
             .SetEase(Ease.Linear)

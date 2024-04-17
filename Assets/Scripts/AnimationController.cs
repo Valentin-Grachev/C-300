@@ -35,7 +35,7 @@ public class AnimationController : MonoBehaviour
     {
         DOTween.KillAll();
         foreach (Transform child in instance._hydroSystem)
-            child.gameObject.SetActive(false);
+            Destroy(child.gameObject);
 
 
         currentStepIndex = stepIndex;
@@ -45,8 +45,8 @@ public class AnimationController : MonoBehaviour
         Camera.main.transform.position = step.cameraPosition.position;
         Camera.main.transform.rotation = step.cameraPosition.rotation;
 
-        step.hydroSequence.gameObject.SetActive(true);
-        step.hydroSequence.Run();
+        var hydroSequence = Instantiate(step.hydroSequence, instance._hydroSystem);
+        hydroSequence.Run();
 
     }
 
