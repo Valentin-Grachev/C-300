@@ -7,6 +7,9 @@ public class HydroSequence : HydroItem
 
     public override void Animate()
     {
+        if (_items == null || _items.Count == 0) return;
+
+
         for (int i = 0; i < _items.Count - 1; i++)
         {
             int index = i;

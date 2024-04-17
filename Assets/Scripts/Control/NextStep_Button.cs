@@ -8,4 +8,11 @@ public class NextStep_Button : ButtonClick
 
         AnimationController.RunStep(AnimationController.currentStepIndex + 1);
     }
+
+
+    private void Update()
+    {
+        button.interactable = AnimationController.currentStepIndex < AnimationController.stepsQuantity - 1;
+    }
+
 }
